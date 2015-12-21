@@ -1,0 +1,18 @@
+ru:
+  activerecord:
+    models:
+      task: 'Задача'
+      tasks: 'Задачи'
+    attributes:
+      task:
+        name: Название
+        description: Описание
+        user: Кому
+        state: Состояние
+        attachments: Файлы
+        created_at: Создано
+        started_at: Начато
+        finished_at: Завершено
+  List_of_tasks: Список задач
+  Create_task: Новая задача
+  Edit_task: Редактирование задачи

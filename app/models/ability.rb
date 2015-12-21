@@ -10,9 +10,12 @@ class Ability
        end
        if user.has_role? :user
          can [:read, :update, :destroy], User, id: user.id
+         can :read_list, Task
+         can :manage, Task, user_id: user.id
          can :read, :all
        end
        if user.new_record?
+         can :read_list, Task
        end
     #
     # The first argument to `can` is the action you are giving the user

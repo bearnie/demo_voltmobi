@@ -29,10 +29,16 @@ ru:
   helpers:
     titles:
       edit: 'Редактирование %{model}'
+      new: 'Создание %{model}'
     links:
       cancel: "Отмена"
       edit: "Редактировать"
       edit_html: "<span class='glyphicon glyphicon-pencil'></span>"
       destroy: "Удалить"
       destroy_html: "<span class='glyphicon glyphicon-trash'></span>"
+      new: "Создать"
+
+  time:
+    formats:
+      default: "%d %B %Y"
 

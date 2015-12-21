@@ -36,6 +36,11 @@ module NavigationHelpers
     when /Редактировать профиль "(.+)"/
       edit_user_path(User.find_by_email $1)
 
+    when /Новая задача/
+      '/tasks/new'
+    when /Список задач/
+      '/tasks'
+
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in #{__FILE__}"

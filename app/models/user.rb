@@ -3,6 +3,8 @@ require 'role_model'
 
 class User < ActiveRecord::Base
 
+  has_many :tasks
+
   before_create :accept_roles
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

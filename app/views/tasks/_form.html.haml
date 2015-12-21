@@ -1,0 +1,6 @@
+= bootstrap_form_for @task do |f|
+  = f.text_field :name
+  = f.text_area :description
+  = f.form_group do
+    = f.submit t(:Save)
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), tasks_path, :class => 'btn btn-default'
