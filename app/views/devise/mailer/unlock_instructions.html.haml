@@ -1,0 +1,4 @@
+%p
+  = t("Hello", appeal: @resource.try(:appeal) || @resource.email).html_safe
+%p
+  = t("account_has_been_blocked", url: url_for(:root), link: link_to(t('Unlock my account'), unlock_url(@resource, unlock_token: @token))).html_safe

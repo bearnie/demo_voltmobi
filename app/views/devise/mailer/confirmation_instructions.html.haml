@@ -1,0 +1,4 @@
+%p
+  = t("Welcome", appeal: @resource.try(:appeal) || @resource.email).html_safe
+%p
+  = t("confirm_acocunt_mailer_notice", link: link_to(t('Confirm my account'), confirmation_url(@resource, confirmation_token: @token))).html_safe

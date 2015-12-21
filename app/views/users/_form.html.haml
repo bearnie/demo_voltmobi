@@ -1,0 +1,14 @@
+= bootstrap_form_for @user, html: { class: "form form-horizontal user" } do |f|
+  = f.email_field :email
+  = f.password_field :password
+  = f.password_field :password_confirmation
+  = f.text_field :name
+  = f.date_select :date_of_birth
+  = f.form_group :roles, label: {text: User.human_attribute_name(:roles)} do
+    - for role in User.valid_roles
+      = f.check_box :roles, value: role, label: t(role.to_s), checked: @user.roles.include?(role) 
+  = f.form_group do
+    = f.check_box :disabled
+  = f.form_group do
+    = f.submit t("Save") 
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn btn-default'

@@ -1,0 +1,38 @@
+ru:
+  Save: Сохранить
+  Update: Обновить
+  Send: Отправить
+  Cancel: Отмена
+  Back: Назад
+  Sign in: Вход
+  Sign up: Регистрация
+  Sign out: Выход
+  Forgot your password?: Забыли пароль?
+  Send me reset password instructions: Отправить
+  characters_minimum:
+    few: ! 'минимум %{count} символа'
+    many: ! 'минимум %{count} символов'
+    one: ! 'минимум %{count} символ'
+    other: ! 'минимум %{count} символа'
+  helpers:
+    links:
+      back: Назад
+      edit: Редактировать
+      destroy: Удалить
+      show: Просмотр
+  Resend request: "Отправить запрос"
+  leave_blank_if_don't_want: "Оставьте пустым если не нужно изменить"
+  need_current_password_to_confirm: "Нужен текущий пароль для подтверждения"
+  Unhappy?: "Несчастны? Сделайте шаг к краху индустриальной системы"
+  Are you sure?: "Вы уверены?"
+
+  helpers:
+    titles:
+      edit: 'Редактирование %{model}'
+    links:
+      cancel: "Отмена"
+      edit: "Редактировать"
+      edit_html: "<span class='glyphicon glyphicon-pencil'></span>"
+      destroy: "Удалить"
+      destroy_html: "<span class='glyphicon glyphicon-trash'></span>"
+
