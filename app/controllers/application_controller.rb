@@ -15,11 +15,28 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def referer
+    Rails.application.routes.recognize_path(request.referer)
+  end
+
+  def cannot_go_back?
+    referer[:action] == "edit" || request.referer.nil?
+  end
+
+  # Redirect to back
+  # If :back is bad(model#edit or nil)
+  # then redirect to options[:default]
+  # If options[:default] is nil, redirect to model#index
+  def redirect_to_back_or default_url, options = {} 
+    url = request.referer
+    default_url = controller_name.classify.constantize if default_url.nil?
+    url = default_url if cannot_go_back?
+    redirect_to url, options
+  end
+
   protected
 
   def configure_permitted_parameters
-    #devise_parameter_sanitizer.for(:account_update) |= :name, :date_of_birth
-    #devise_parameter_sanitizer.for(:account_update) << :date_of_birth
     devise_parameter_sanitizer.for(:account_update) do |u|
       u.permit(:date_of_birth, :email, :name, :password, :password_confirmation, :current_password) 
     end

@@ -7,11 +7,12 @@ class Ability
        user ||= User.new # guest user (not logged in)
        if user.has_role? :admin
          can :manage, :all
+         can :change_states, :all
        end
        if user.has_role? :user
          can [:read, :update, :destroy], User, id: user.id
          can :read_list, Task
-         can :manage, Task, user_id: user.id
+         can [:manage, :change_states], Task, user_id: user.id
          can :read, :all
        end
        if user.new_record?

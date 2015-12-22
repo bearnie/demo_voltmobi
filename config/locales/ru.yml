@@ -31,6 +31,7 @@ ru:
       edit: 'Редактирование %{model}'
       new: 'Создание %{model}'
     links:
+      back: "Назад"
       cancel: "Отмена"
       edit: "Редактировать"
       edit_html: "<span class='glyphicon glyphicon-pencil'></span>"

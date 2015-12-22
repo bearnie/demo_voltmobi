@@ -77,3 +77,7 @@ gem 'stringex'
 gem 'will_paginate'
 # Russian I18n
 gem 'russian', '~> 0.6.0'
+# States engine
+# gem state_machine have some bugs for rails 4.2.5
+# gem 'state_machine'
+gem 'aasm'

@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (4.5.1)
     actionmailer (4.2.5)
       actionpack (= 4.2.5)
       actionview (= 4.2.5)
@@ -269,6 +270,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   bootstrap_form
   byebug
   cancancan (~> 1.10)

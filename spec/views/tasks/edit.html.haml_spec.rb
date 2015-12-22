@@ -2,10 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "tasks/edit", type: :view do
   before(:each) do
+    @user = FactoryGirl.create :user
+    sign_in @user
     @task = assign(:task, Task.create!(
       :name => "MyString",
       :description => "MyString",
-      :user => nil
+      :user => @user
     ))
   end
 
@@ -16,9 +18,8 @@ RSpec.describe "tasks/edit", type: :view do
 
       assert_select "input#task_name[name=?]", "task[name]"
 
-      assert_select "input#task_description[name=?]", "task[description]"
+      assert_select "textarea#task_description[name=?]", "task[description]"
 
-      assert_select "input#task_user_id[name=?]", "task[user_id]"
     end
   end
 end

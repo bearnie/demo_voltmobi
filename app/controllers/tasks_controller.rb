@@ -43,12 +43,22 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
+    @task.assign_attributes(task_params)
+    @task.perform_event event_params[:event], current_user
     respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+      if @task.save
+        #format.html { true_redirect_or_render }
+        format.html { redirect_to_back_or @task, notice: t('Task was successfully updated.') }
         format.json { render :show, status: :ok, location: @task }
       else
-        format.html { render :edit }
+        #format.html { true_redirect_or_render }
+        format.html {
+          if @task.errors.messages[:event]
+            redirect_to :back, alert: @task.errors.full_messages.join(', ')
+          else
+            render :edit
+          end
+        }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -71,7 +81,13 @@ class TasksController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    def event_params
+      #params.require(:task).permit(:description, :name, :user_id).permit(:event)
+      params.permit(:event)
+    end
     def task_params
-      params.require(:task).permit(:name, :description, :user_id)
+      #params.require(:task).permit(:description, :name, :user_id).permit(:event)
+      params.permit(task: [:description, :name, :user_id])[:task] || {}
+
     end
 end

@@ -16,3 +16,15 @@ ru:
   List_of_tasks: Список задач
   Create_task: Новая задача
   Edit_task: Редактирование задачи
+  Task was successfully updated: Задача обновлена
+  Task was successfully created: Задача сохранена
+  Event can't to be apply: Невозможно применить действие
+  Event don't exists: Запрошенного действия не существует
+  task:
+    states:
+      new: "Новая"
+      started: "В работе"
+      finished: "Завершена"
+    events:
+      start: Начать
+      finish: Готово!

@@ -15,6 +15,9 @@
         %td= task.user.try(:email)
         %td=l task.created_at
         %td
+          - if can? :change_states, task
+            - task.possible_events.each do |event|
+              = link_to t("task.events.#{event.to_s.downcase}"), task_path(task, event: event), :method => :put, :class => 'btn btn-xs btn-default'
           - if can? :update, task
             = link_to t('.edit', :default => t("helpers.links.edit")), edit_task_path(task), :class => 'btn btn-default btn-xs'
           - if can? :destroy, task

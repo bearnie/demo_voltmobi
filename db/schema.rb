@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221123532) do
+ActiveRecord::Schema.define(version: 20151222171230) do
+
+  create_table "events_logs", force: :cascade do |t|
+    t.string   "event"
+    t.integer  "user_id"
+    t.integer  "logable_id"
+    t.string   "logable_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "events_logs", ["logable_type", "logable_id"], name: "index_events_logs_on_logable_type_and_logable_id"
+  add_index "events_logs", ["user_id"], name: "index_events_logs_on_user_id"
 
   create_table "tasks", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +31,7 @@ ActiveRecord::Schema.define(version: 20151221123532) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "state"
   end
 
   add_index "tasks", ["user_id"], name: "index_tasks_on_user_id"
