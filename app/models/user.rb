@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   roles_attribute :roles_mask
   roles :admin, :user
 
-  has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "/missing_images/:style/missing.png"
+  has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "/missing_images/:style/avatar.jpg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   # method to select appeal to users
