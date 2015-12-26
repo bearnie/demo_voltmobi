@@ -20,6 +20,8 @@
 
 # Ignore static assets
 /public/assets
+# Ignore dinamic assets
+public/system/*
 
 # Ignore editor swaps, and backups
 *~

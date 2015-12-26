@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
 
   paginates_per 5 
 
+  has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "/missing_images/:style/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
   # method to select appeal to users
   def appeal
     return name if name.present?
