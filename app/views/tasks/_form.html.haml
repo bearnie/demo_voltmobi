@@ -1,6 +1,16 @@
-= bootstrap_form_for @task do |f|
-  = f.text_field :name
-  = f.text_area :description
-  = f.form_group do
-    = f.submit t(:Save)
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), tasks_path, :class => 'btn btn-default'
+- uuid = @task.object_id
+.task{id: "task_#{uuid}"}
+  .form-group
+    %label.control-label= t("activerecord.attributes.task.executor")
+    =# select_executors
+    .select_executors_wrapper
+      = render 'user_label_short', user: @task.executor
+    = link_to t("Select another executor"), tasks_executors_path(for_task: uuid, format: :js), remote: true
+  = bootstrap_form_for @task do |f|
+    = f.hidden_field :user_id
+    =# f.text_field :user_id
+    = f.text_field :name
+    = f.text_area :description
+    = f.form_group do
+      = f.submit t(:Save)
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), tasks_path, :class => 'btn btn-default'

@@ -12,7 +12,9 @@ class Ability
        if user.has_role? :user
          can [:read, :update, :destroy], User, id: user.id
          can :read_list, Task
-         can [:manage, :change_states], Task, user_id: user.id
+         can :manage, Task, author_id: user.id
+         can :manage, Task, user_id: user.id
+         can :change_states, Task, user_id: user.id
          can :read, :all
        end
        if user.new_record?

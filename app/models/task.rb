@@ -1,5 +1,8 @@
 class Task < ActiveRecord::Base
-  belongs_to :user
+
+  belongs_to :author, class_name: "User"
+  belongs_to :executor, class_name: "User", foreign_key: "user_id"
+
   has_many :events_logs, as: :logable 
   validates :name, :description, presence: true
 

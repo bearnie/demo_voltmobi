@@ -49,6 +49,7 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'capybara-email'
+  gem 'selenium-webdriver'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
@@ -74,7 +75,7 @@ gem 'jquery-fileupload-rails'
 # Making translit for pretty url
 gem 'stringex'
 # Paginator
-gem 'will_paginate'
+gem 'kaminari'
 # Russian I18n
 gem 'russian', '~> 0.6.0'
 # States engine

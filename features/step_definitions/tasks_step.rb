@@ -32,3 +32,9 @@ end
 То(/^должна существовать задача "(.*?)" с:$/) do |name, table|
   step %{у задачи "#{name}" должны быть аттрибуты:}, table
 end
+
+То(/^исполнителем задачи "(.*?)" должен быть "(.*?)"$/) do |task_name, email|
+  @executor = User.find_by_email email
+  @task = Task.find_by_name task_name
+  expect(@task.executor.email).to eq(@executor.email)
+end

@@ -29,7 +29,7 @@ RSpec.describe TasksController, type: :controller do
   # Task. As you add validations to Task, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {name: "task1", description: "Task desc", user_id: @user.id}
+    {name: "task1", description: "Task desc", author_id: @user.id}
   }
 
   let(:invalid_attributes) {

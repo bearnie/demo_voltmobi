@@ -1,0 +1,42 @@
+.select_executors_wrapper
+  .well.panel.panel-default
+    .row
+      .col-sm-11
+        = form_tag tasks_executors_path(for_task: params[:for_task]), method: :get, formats: :js, remote: true, class: 'navbar-form pagination' do |f|
+          .input-group
+            = text_field_tag "search", params[:search], placeholder: t("Search"), class: "form-control"
+            .input-group-btn
+              %button.btn.btn-default
+                %span.glyphicon.glyphicon-search
+      .col-sm-1.text-right
+        %a{href: "#", 'data-target-empty' => '.select_executors_wrapper'}
+          %span.glyphicon.glyphicon-remove
+
+
+
+    .row
+      %table.table.table-striped{'data-toggle' => 'table'}
+        %thead
+          %tr
+            %th= @users.human_attribute_name(:email)
+            %th.text-center= t "task.states_for_list.new"
+            %th.text-center= t "task.states_for_list.started"
+            %th.text-center= t "task.states_for_list.finished"
+            %th
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td= user.email
+              %td.text-center= @tasks_counts[user.id.to_s]["new"]
+              %td.text-center= @tasks_counts[user.id.to_s]["started"]
+              %td.text-center= @tasks_counts[user.id.to_s]["finished"]
+              %td.text-right
+                - if request.xhr?
+                  = link_to t("helpers.links.select"), tasks_executor_path(user, selected_for_task: params[:for_task], format: :js), class: 'btn btn-primary', remote: true                
+                - else
+                  = link_to t("helpers.links.select"), new_task_path(task: {user_id: user.id}), class: 'btn btn-primary', 'data-target-empty' => '.select_executors_wrapper', 'data-value' => user.id, 'data-fill-target' => '#task_user_id'
+                =# link_to t("Create_task"), new_task_path(task: {user_id: user.id})
+
+    .row
+      .col-sm-6.text-left
+        = paginate @users, remote: true, slip: [:last, :first]

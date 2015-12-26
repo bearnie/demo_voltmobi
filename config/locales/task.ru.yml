@@ -8,6 +8,8 @@ ru:
         name: Название
         description: Описание
         user: Кому
+        executor: Исполнитель
+        author: От кого
         state: Состояние
         attachments: Файлы
         created_at: Создано
@@ -20,11 +22,18 @@ ru:
   Task was successfully created: Задача сохранена
   Event can't to be apply: Невозможно применить действие
   Event don't exists: Запрошенного действия не существует
+  Select another executor: Выбрать другого исполнителя
   task:
+    executors: Исполнители
+    select_executor: Выбрать исполнителя
     states:
-      new: "Новая"
-      started: "В работе"
-      finished: "Завершена"
+      new: Новая
+      started: В работе
+      finished: Завершена
+    states_for_list:
+      new: Новые
+      started: В работе
+      finished: Завершеные
     events:
       start: Начать
       finish: Готово!

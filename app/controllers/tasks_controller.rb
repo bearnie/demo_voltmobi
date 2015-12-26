@@ -1,13 +1,28 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
-  skip_authorize_resource :only => :index  
+  skip_authorize_resource :only => [:index, :executors, :executor]
 
   # GET /tasks
   # GET /tasks.json
   def index
     authorize! :read_list, Task
     @tasks = Task.all
+  end
+
+  # GET /tasks/executors
+  # GET /tasks/executors.js
+  def executors
+    authorize! :create, Task
+    @users = User.search(executors_params[:search]).page(executors_params[:page])
+    @tasks_counts = User.all_users_tasks_counts
+  end
+
+  # GET /tasks/executor/1
+  # GET /tasks/executor/1.js
+  def executor
+    authorize! :create, Task
+    @user = User.find(params[:user_id])
   end
 
   # GET /tasks/1
@@ -17,7 +32,17 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = Task.new(task_params)
+    if request.xhr?
+      #render js: "alert '#{new_task_path(task: {executor: current_user.id})}';"
+      render js: "window.location = '#{new_task_path(task: {user_id: current_user.id})}'"
+    else
+      unless @task.executor
+        redirect_to tasks_executors_path
+      else
+        render
+      end
+    end
   end
 
   # GET /tasks/1/edit
@@ -27,11 +52,11 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = current_user.tasks.new(task_params)
+    @task = current_user.outcoming_tasks.new(task_params)
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to @task, notice: t('Task was successfully created.') }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -81,6 +106,9 @@ class TasksController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    def executors_params
+      params.permit(:search, :sort, :page)
+    end
     def event_params
       #params.require(:task).permit(:description, :name, :user_id).permit(:event)
       params.permit(:event)

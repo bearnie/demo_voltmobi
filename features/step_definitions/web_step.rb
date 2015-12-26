@@ -53,7 +53,7 @@ end
 end
 
 Если(/^кликаю по последней ссылке "(.*?)"$/) do |link|
-  find(:xpath, "(//a[text()='#{link}'])[last()]").click
+  page.find(:xpath, "(//a[text()='#{link}'])[last()]").click
 end
 
 То(/^я кликаю ссылку на страницу (.+)$/) do |page_name|
@@ -148,7 +148,6 @@ end
 end
 
 
-
 То /^(?:|я )должна быть ссылка "([^\"]*)"$/ do |text|
  #puts current_url
  step %{я должен увидеть текст "#{text}"}
@@ -202,7 +201,7 @@ end
  step %{я должен увидеть текст "#{text}"}
 end
 
-То(/^на странице не должно быть текста "(.*?)"$/) do |text|
+То(/^(?:|на странице )не должно быть текста "(.*?)"$/) do |text|
 		expect(page).to have_no_content(text)
 end
 
@@ -245,4 +244,9 @@ end
 То(/^я должен увидеть хоть что\-нибудь$/) do
   expect(page.status_code).to eq(200)
   expect(page.body).to be_present
+end
+
+Если(/^подождал (\d+) сек.$/) do |pause|
+  sleep(pause.to_i)
+
 end

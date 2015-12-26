@@ -2,12 +2,14 @@ require 'rails_helper'
 
 RSpec.describe "tasks/new", type: :view do
   before(:each) do
-    @user = FactoryGirl.create :user
-    sign_in @user
+    @executor = FactoryGirl.create :user
+    @author = FactoryGirl.create :user
+    sign_in @author
     assign(:task, Task.new(
       :name => "MyString",
       :description => "MyString",
-      :user => @user
+      :executor => @executor,
+      :author => @author
     ))
   end
 

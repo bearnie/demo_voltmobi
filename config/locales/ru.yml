@@ -9,6 +9,9 @@ ru:
   Sign out: Выход
   Forgot your password?: Забыли пароль?
   Send me reset password instructions: Отправить
+  For user: Кому
+  From user: От кого
+  Search: Поиск
   characters_minimum:
     few: ! 'минимум %{count} символа'
     many: ! 'минимум %{count} символов'
@@ -31,13 +34,18 @@ ru:
       edit: 'Редактирование %{model}'
       new: 'Создание %{model}'
     links:
-      back: "Назад"
-      cancel: "Отмена"
-      edit: "Редактировать"
+      back: Назад
+      cancel: Отмена
+      edit: Редактировать
       edit_html: "<span class='glyphicon glyphicon-pencil'></span>"
-      destroy: "Удалить"
+      destroy: Удалить
       destroy_html: "<span class='glyphicon glyphicon-trash'></span>"
-      new: "Создать"
+      new: Создать
+      select: Выбрать
+  views:
+    pagination:
+      previous_html: "&laquo;"
+      next_html: "&raquo;"
 
   time:
     formats:

@@ -40,6 +40,8 @@ module NavigationHelpers
       '/tasks/new'
     when /Список задач/
       '/tasks'
+    when /Выбор исполнителя/
+      '/tasks/executors'
 
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Task, type: :model do
 
   before do
-    @user = FactoryGirl.create :user
+    @executor = FactoryGirl.create :user
     @task = FactoryGirl.create :task
   end
 

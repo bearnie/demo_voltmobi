@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/tasks/executor/:user_id', to: 'tasks#executor', as: 'tasks_executor'
+  get '/tasks/executors', to: 'tasks#executors'
   resources :tasks
 
   get '/profile', to: 'users#show', it_is_current_user: true, as: :user_registration
