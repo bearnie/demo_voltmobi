@@ -50,3 +50,8 @@ end
   page_path = path_to "пользователя \"#{email}\"" 
   expect(page.body).not_to have_xpath("//a[contains(@href, '#{page_path}')][@data-method='delete']")
 end
+
+То(/^пользователь "(.*?)" должен иметь аватарку "(.*?)"$/) do |email, avatar|
+  @user = User.find_by_email email
+  expect(@user.avatar_file_name).to eq(avatar)
+end
