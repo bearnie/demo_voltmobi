@@ -11,8 +11,6 @@ default: &default
   host: localhost
   encoding: unicode
   pool: 5
-  username: demo
-  password: demo
 
 development:
   <<: *default
@@ -25,6 +23,7 @@ development:
 test: &test
   <<: *default
   database: demo_voltmobi_test
+  username: postgres
 
 production:
   <<: *default
