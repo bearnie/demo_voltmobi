@@ -25,6 +25,7 @@ gem 'bootstrap_form'
 gem 'less-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
+gem 'puma'
 
 
 # Use jquery as the JavaScript library
