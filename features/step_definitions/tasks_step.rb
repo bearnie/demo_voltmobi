@@ -9,6 +9,24 @@
     end
   end
   attributes.merge! user_id: @user.id
+  attributes.merge! author_id: @user.id
+	@task = FactoryGirl.create( :task, attributes )
+	expect(@task).to be_persisted
+end
+
+Допустим(/^существует задача от "(.*?)" для "(.*?)" с:$/) do |author, executor, table|
+  @author = User.find_by_email(author) || FactoryGirl.create(:user, email: author)
+  @executor = User.find_by_email(executor) || FactoryGirl.create(:user, email: executor)
+  attributes = {}
+	table.rows_hash.each do |row|
+    if ["true", "false"].include? row[1]
+      attributes[row[0].to_sym] = row[1] == "true" ? true : false
+    else
+      attributes[row[0].to_sym] = row[1]
+    end
+  end
+  attributes.merge! user_id: @executor.id
+  attributes.merge! author_id: @author.id
 	@task = FactoryGirl.create( :task, attributes )
 	expect(@task).to be_persisted
 end

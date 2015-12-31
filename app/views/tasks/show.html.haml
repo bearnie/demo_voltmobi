@@ -1,22 +1,61 @@
 - model_class = Task
 .page-header
-  %h1
+  %h1.text-center
     = @task.name
-    %small
-      = surround "[", "]" do
-        = t("task.states.#{@task.state}")
+  .well.text-left.padding-small{style: "background: #fff"}
+    .row
+      .col-xs-12.col-sm-5.col-md-4.inline-block.text-middle>
+        .avatar.xxs.inline-block.padding-small
+          = image_tag @task.author.avatar(:thumb)
+        .inline-block.text-left
+          %small.text-muted
+            %strong
+              = @task.author.email
+            %br
+            = succeed ":" do
+              = Task.human_attribute_name(:created_at)
+            =l @task.created_at
+      .col-xs-12.col-sm-5.col-md-4.inline-block.text-middle>
+        .avatar.xxs.inline-block.padding-small
+          = image_tag @task.executor.avatar(:thumb)
+        .inline-block.text-top
+          %small.text-muted
+            %strong
+              = @task.executor.email
+            - if @task.started? || @task.finished?
+              %br
+              = succeed ":" do
+                = Task.human_attribute_name(:started_at)
+              = l @task.date_for_event('start')
+            - if @task.finished?
+              %br
+                = succeed ":" do
+                  = Task.human_attribute_name(:finished_at)
+                = l @task.date_for_event('start')
+      .col-xs-12.col-sm-2.col-md-4.inline-block.text-middle.text-right.text-xs-left>
+        .padding-h-small
+          = links_to_possible_events_for(@task, button_class: "btn-lg")
+  - if false
+    .col-xs-4
+      .test
+        %small.text-muted
+        %br
+        - if @task.started? || @task.finished?
+          %small.text-muted
+            = succeed ":" do
+              = Task.human_attribute_name(:started_at)
+            = l @task.date_for_event('start'), format: :short_text_date
+
+    .col-xs-2.inline-block.text-center
+      .avatar.xxs
+        = image_tag @task.executor.avatar(:thumb)
+      %br
+      %small= @task.executor.email
+
 %p
   %strong= model_class.human_attribute_name(:description) + ':'
   %br
   = @task.description
-%p
-  %strong= model_class.human_attribute_name(:user_id) + ':'
-  %br
-  = @task.user_id
-
-- if can? :change_states, @task
-  - @task.possible_events.each do |event|
-    = link_to t("task.events.#{event.to_s.downcase}"), task_path(@task, event: event), :method => :put, :class => 'btn btn-success btn-default'
 
 = link_to t('.back', :default => t("helpers.links.back")), tasks_path, :class => 'btn btn-default'
 

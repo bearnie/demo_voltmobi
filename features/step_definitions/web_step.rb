@@ -70,7 +70,7 @@ end
 Если /^(?:|я )ввожу "([^\"]*)" в поле "([^\"]*)"$/ do |value, label|
   #fill_in(field, :with => value)
   #find(:xpath, "//label[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ', 'abcdefghijklmnopqrstuvwxyzабвгдеёжзиклмнопрстуфхцчшщьыъэюя'),'#{label.downcase}')]/following-sibling::input | //label[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'#{label.downcase}')]/following-sibling::div/input").set value
-  find(:xpath, "//label[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'#{label.downcase}')]/following-sibling::input | //label[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'#{label.downcase}')]/following-sibling::div/input | //label[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'#{label.downcase}')]/following-sibling::textarea").set value
+  find(:xpath, "//label[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'#{label.downcase}')]/following-sibling::input | //label[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'#{label.downcase}')]/following-sibling::div/inpеt | //label[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'#{label.downcase}')]/following-sibling::textarea").set value
 end
 
 Если /^(?:|я )ввожу следующие значения:$/ do |fields|
@@ -208,6 +208,10 @@ end
 То(/^не должно быть видно поля "(.*?)"$/) do |field_name|
 
 	page.should have_no_selector("input[type='text'][name='#{field_name}']")
+end
+
+То(/^на странице не должно быть ссылки "(.*?)"$/) do |link|
+  expect(page).to have_no_selector(:xpath, "//a[text()='#{link}']")
 end
 
 

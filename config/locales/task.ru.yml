@@ -9,20 +9,22 @@ ru:
         description: Описание
         user: Кому
         executor: Исполнитель
+        exectr: Исп.
         author: От кого
         state: Состояние
         attachments: Файлы
-        created_at: Создано
-        started_at: Начато
-        finished_at: Завершено
+        created_at: Создана
+        started_at: Начата
+        finished_at: Завершена
   List_of_tasks: Список задач
   Create_task: Новая задача
   Edit_task: Редактирование задачи
-  Task was successfully updated: Задача обновлена
-  Task was successfully created: Задача сохранена
-  Event can't to be apply: Невозможно применить действие
-  Event don't exists: Запрошенного действия не существует
-  Select another executor: Выбрать другого исполнителя
+  Task was successfully updated: 'Задача обновлена'
+  Task was successfully created: 'Задача сохранена'
+  Event can't to be apply: 'Невозможно применить действие'
+  Event don't exists: 'Запрошенного действия не существует'
+  Select another executor: 'Выбрать другого исполнителя'
+  Tasks not found: 'Не найдено ни одной записи'
   task:
     executors: Исполнители
     select_executor: Выбрать исполнителя
@@ -30,6 +32,10 @@ ru:
       new: Новая
       started: В работе
       finished: Завершена
+    states_names:
+      new: Новые
+      started: В работе
+      finished: Завершенные
     states_for_list:
       new: Новые
       started: В работе

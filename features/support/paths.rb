@@ -42,6 +42,10 @@ module NavigationHelpers
       '/tasks'
     when /Выбор исполнителя/
       '/tasks/executors'
+    when /редактирование задачи "(.+)"/
+      edit_task_path(Task.find_by_name $1)
+    when /задачи "(.+)"/
+      task_path(Task.find_by_name $1)
 
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +

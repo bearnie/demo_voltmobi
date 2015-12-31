@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   # Primary layout tpl
-  layout "main"
+  layout :layout_by_resource
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -39,6 +39,14 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:account_update) do |u|
       u.permit(:avatar, :date_of_birth, :email, :name, :password, :password_confirmation, :current_password) 
+    end
+  end
+
+  def layout_by_resource
+    if devise_controller?
+      "blank"
+    else
+      "main"
     end
   end
 

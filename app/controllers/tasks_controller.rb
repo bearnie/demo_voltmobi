@@ -1,13 +1,13 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
-  skip_authorize_resource :only => [:index, :executors, :executor]
+  skip_authorize_resource :only => [:index, :executors, :executor, :update]
 
   # GET /tasks
   # GET /tasks.json
   def index
     authorize! :read_list, Task
-    @tasks = Task.all
+    @tasks = Task.with_options params, current_user
   end
 
   # GET /tasks/executors
@@ -68,8 +68,14 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    @task.assign_attributes(task_params)
-    @task.perform_event event_params[:event], current_user
+    if task_params.present?
+      authorize! :update, @task
+      @task.assign_attributes(task_params)
+    end
+    if event_params.present?
+      authorize! :change_states, @task
+      @task.perform_event event_params[:event], current_user
+    end
     respond_to do |format|
       if @task.save
         #format.html { true_redirect_or_render }

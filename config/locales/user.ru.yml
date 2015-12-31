@@ -34,7 +34,7 @@ ru:
     many: ! '%{count} пользователей'
     one: ! '%{count} пользователь'
     other: ! '%{count} пользователя'
-    all: 'пользователи'
+    all: 'Пользователи'
 
   Login_or_email: "Логин/e-mail"
   Login: "Логин"

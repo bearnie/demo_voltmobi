@@ -14,7 +14,9 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # Bootstrap
-gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass', '~> 3.3.6'
+# Extra generators and helpers for Bootstrap
+gem 'bootstrap-sass-extras'
 gem 'bootstrap_form'
 # Sprockets supports LESS required by bootstrap
 gem 'less-rails'

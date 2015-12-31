@@ -1,3 +1,117 @@
+.float_l
+  float: left
+.float_r
+  float: right
+.clear-left
+  clear: left
+.clear-right
+  clear: right
+.clear
+  clear: both
 
+.relative
+  position: relative
+  .valign-top
+    position: absolute
+    top: 0
+  .valign-bottom
+    position: absolute
+    bottom: 0
+.valign-top
+  vertical-align: top
+.valign-bottom
+  vertical-align: bottom !important
+.inline-block
+  display: inline-block
+  float: none
+.absolute
+  position: absolute
+.margin-bottom-zero
+  margin-bottom: 0
 .margin-bottom-small
   margin-bottom: 5px
+.margin-zero
+  margin: 0
+.padding-zero
+  padding: 0
+.padding-small
+  padding: 5px
+.padding-h-small
+  padding-left: 5px !important
+  padding-right: 5px !important
+.padding-middle
+  padding: 10px
+.padding-large
+  padding: 20px
+.padding-xl
+  padding: 40px
+.padding-h-middle
+  padding-left: 10px !important
+  padding-right: 10px !important
+
+
+.avatar
+  display: inline-block
+  img
+    width: 100%
+    min-width: 30px
+    border-radius: 50%
+    border: 1px solid #888
+.pull-left
+  .avatar
+    padding: 5px 0 10px 10px
+.pull-right
+  .avatar
+    padding: 5px 10px 10px 0
+
+.avatar.xxs
+  img
+    width: 100%
+    max-width: 60px
+    min-width: 30px
+.avatar.xxxs
+  img
+    width: 100%
+    max-width: 55px
+    min-width: 30px
+
+.col-1-8
+  width: 12.5% 
+  float: left
+    
+.height-full
+  height: 100%
+.width-full
+  width: 100%
+
+.well.well-xs
+  padding: 5px
+.row-eq-height 
+  display: -webkit-box
+  display: -webkit-flex
+  display: -ms-flexbox
+  display: flex
+  align-items: center
+.text-top
+  vertical-align: top
+.text-middle,
+.vcenter
+  display: inline-block
+  vertical-align: middle
+  float: none
+
+.white
+  color: white
+a.white
+  color: white
+a:hover,
+a:focus, 
+.nav > li > a:hover,
+.nav > li > a:focus
+  background: transparent
+
+@media screen and (max-width: 768px)
+  .text-xs-left
+    text-align: left
+
+

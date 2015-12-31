@@ -19,42 +19,49 @@
 
 
   %body
-    .navbar.navbar-default.navbar-static-top
-      .container
-        %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        %a.navbar-brand(href="#") Base4
-        .navbar-collapse.collapse.navbar-responsive-collapse
-          %ul.nav.navbar-nav
-            %li= link_to "Link 1", "/path1"
-            %li= link_to "Link 2", "/path2"
-            %li= link_to "Link 3", "/path3"
-            %li= link_to "Link 3", "/path3"
-        .navbar
-          - if user_signed_in?
-            = link_to current_user.email, user_registration_path
-            =# link_to current_user.email, edit_user_registration_path
-            | 
-            = link_to t("Sign out"), destroy_user_session_path, method: :delete
-          - else
-            = link_to t("Sign in"), sign_in_path
-            |
-            = link_to t("Sign up"), sign_up_path
+    #wrapper
+      #page-content-wrapper.padding-zero
+        .container-fluid
+          .row
+            .col-lg-12
+              = bootstrap_flash
+              = yield
+      #sidebar-wrapper.my_pretty_bg
+        .menu-toggler.visible-xs.visible-xxs.pull-left
+          %a.padding-large.white{href: ""}
+            %big.glyphicon.glyphicon-remove
+        .container-fluid
+          .navbar.main-menu
+            - if user_signed_in?
+              .logout
+                = link_to destroy_user_session_path, method: :delete do
+                  %big.glyphicon.glyphicon-log-out.padding-large
+              .current-user.col-xs-12.text-center
+                .avatar
+                  = image_tag current_user.avatar(:thumb)
+                = link_to current_user.email, user_registration_path
 
-    .container
-      .row
-        .col-lg-9
-          = bootstrap_flash
-          = yield
-        .col-lg-3
-          .well.sidebar-nav
-            %h3 Sidebar
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
+              .clear
+              %ul.nav.nav-list.task-menu.v2
+                %li.nav-header
+                  = link_to t("I"), tasks_path(direction: "I")
+                %li= link_to t("I do"), tasks_path(direction: "I", state: "started"), class: 'started'
+                %li= link_to t("I will do"), tasks_path(direction: "I", state: "new"), class: 'new'
+                %li= link_to t("I did"), tasks_path(direction: "I", state: "finished"), class: 'finished'
+              %ul.nav.nav-list.task-menu.task-menu-for-me.v2
+                %li.nav-header
+                  = link_to t("For me"), tasks_path(direction: "for_me")
+                %li= link_to t("Do for me"), tasks_path(direction: "for_me", state: "started"), class: 'started'
+                %li= link_to t("Will do for me"), tasks_path(direction: "for_me", state: "new"), class: 'new'
+                %li= link_to t("Did for me"), tasks_path(direction: "for_me", state: "finished"), class: 'finished'
+
+            - else
+              .white
+                = render "devise/sessions/new", resource: User.new, resource_name: :user
+
       %footer
         %p &copy; Company 2015
+
+    .menu-toggler.menu-toggler-open.visible-xs.visible-xxs.pull-right
+      %a.padding-large{href: ""}
+        %big.glyphicon.glyphicon-menu-hamburger

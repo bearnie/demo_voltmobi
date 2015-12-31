@@ -1,4 +1,5 @@
 ru:
+  All: Все
   Save: Сохранить
   Update: Обновить
   Send: Отправить
@@ -12,22 +13,20 @@ ru:
   For user: Кому
   From user: От кого
   Search: Поиск
-  characters_minimum:
-    few: ! 'минимум %{count} символа'
-    many: ! 'минимум %{count} символов'
-    one: ! 'минимум %{count} символ'
-    other: ! 'минимум %{count} символа'
-  helpers:
-    links:
-      back: Назад
-      edit: Редактировать
-      destroy: Удалить
-      show: Просмотр
   Resend request: "Отправить запрос"
   leave_blank_if_don't_want: "Оставьте пустым если не нужно изменить"
   need_current_password_to_confirm: "Нужен текущий пароль для подтверждения"
   Unhappy?: "Несчастны? Сделайте шаг к краху индустриальной системы"
   Are you sure?: "Вы уверены?"
+  I: Я
+  I do: "делаю"
+  I will do: "буду делать"
+  I did: "сделал"
+  For me: "Мне"
+  Do for me: "делают"
+  Will do for me: "будут делать"
+  Did for me: "сделали"
+
 
   helpers:
     titles:
@@ -50,4 +49,18 @@ ru:
   time:
     formats:
       default: "%d %B %Y"
+      short_text_date: "%d %b %Y"
+      std_date: "%d.%m.%Y"
+  characters_minimum:
+    few: ! 'минимум %{count} символа'
+    many: ! 'минимум %{count} символов'
+    one: ! 'минимум %{count} символ'
+    other: ! 'минимум %{count} символа'
+  helpers:
+    links:
+      back: Назад
+      edit: Редактировать
+      destroy: Удалить
+      select: Выбрать
+      show: Просмотр
 

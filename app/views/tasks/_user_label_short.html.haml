@@ -1,5 +1,9 @@
 .select_executors_wrapper
-  .well.margin-bottom-small
-    = user.email if user
-    =# user.email if user
+  .margin-bottom-small.xs-paddings
+    .row
+      .col-xs-1.vcenter
+        .avatar.pull-left.xxs
+          = image_tag user.avatar(:thumb)
+      .col-xs-5.vcenter
+        = user.email if user
 

@@ -1,0 +1,46 @@
+// Place all the styles related to the Tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.task_wrapper
+  padding: 10px 0 0 0 
+  .row
+    margin: 0
+  .task
+    background: #fff
+    border: solid 1px #ddd
+    padding-top: 5px
+.task_content
+  //padding-bottom: 25px
+.relative .task-details
+  position: absolute
+  width: auto
+  left: 0
+  right: 0
+  bottom: 0
+table .relative .task-details
+  padding-bottom: 8px
+
+.btn-new
+  @extend .btn-info
+.btn-started
+  @extend .btn-warning
+.btn-finished
+  @extend .btn-success
+.bg-new
+  @extend .bg-info
+.bg-started
+  @extend .bg-warning
+.bg-finished
+  @extend .bg-success
+.border-right-hlight-new
+  border-right: solid 2px $brand-info !important
+.border-right-hlight-started
+  border-right: solid 2px $brand-warning !important
+.border-right-hlight-finished
+  border-right: solid 2px $brand-success !important
+.border-left-hlight-new
+  border-left: solid 2px $brand-info !important
+.border-left-hlight-started
+  border-left: solid 2px $brand-warning !important
+.border-left-hlight-finished
+  border-left: solid 2px $brand-success !important

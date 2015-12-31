@@ -10,4 +10,6 @@ $ ->
     target = $(this).data('target-empty')
     $(target).empty()
     false
-    
+  $('body').on 'click', '.menu-toggler', ->
+    $('#wrapper').toggleClass('toggled')
+    false

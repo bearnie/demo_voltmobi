@@ -23,12 +23,14 @@ end
 
 То(/^пользователь "(.*?)" должен быть залогинен$/) do |email|
   #user =  User.find_by_email email
-  expect(page.body).to match('Выход')
+  #expect(page.body).to match('Выход')
+  step %{я вижу ссылку на страницу Выход}
   #pending #need to improove this step
 end
 
 То(/^пользователь "(.*?)" не должен быть залогинен$/) do |arg1|
-  expect(page.body).to match('Вход')
+  #expect(page.body).to match('Вход')
+  step %{я вижу ссылку на страницу Регистрация}
 end
 
 То(/^пользователь "(.*?)" должен иметь следующие данные$/) do |email, table|
