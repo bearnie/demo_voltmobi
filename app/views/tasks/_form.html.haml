@@ -6,16 +6,18 @@
     .select_executors_wrapper
       = render 'user_label_short', user: @task.executor
     = link_to t("Select another executor"), tasks_executors_path(for_task: uuid, format: :js), remote: true
-  = bootstrap_form_for @task, multipart: true do |f|
+  = bootstrap_form_for @task, html: {multipart: true} do |f|
     = f.hidden_field :user_id
     =# f.text_field :user_id
     = f.text_field :name
     = f.text_area :description
-    - @task.attachments.each do |file|
-      = render 'attachments/short', file: file, include_destroy_link: true
-      = hidden_field_tag 'task[attachment_ids][]', file.id
-      %br
-    = f.file_field :attachments, name: 'attachments[][stuff]', multiple: true
+    .form-group
+      .attachments
+        - @task.attachments.each do |file|
+          = render 'attachments/short', file: file, include_destroy_link: true
+          = hidden_field_tag 'task[attachment_ids][]', file.id
+          %br
+      = file_field_tag 'attachments[][stuff]', multiple: true, 'data-url' => attachments_path(for_model: "task"), class: :fileupload
     = f.form_group do
       = f.submit t(:Save)
       = link_to t('.cancel', :default => t("helpers.links.cancel")), tasks_path, :class => 'btn btn-default'

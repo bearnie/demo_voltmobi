@@ -126,7 +126,7 @@ class TasksController < ApplicationController
     end
     def task_params
       #params.require(:task).permit(:description, :name, :user_id).permit(:event)
-      params.permit(task: [:description, :name, :user_id])[:task] || {}
+      params.permit(task: [:description, :name, :user_id, attachment_ids: []])[:task] || {}
 
     end
 end

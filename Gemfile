@@ -74,6 +74,8 @@ gem "role_model"
 # File upload
 gem 'paperclip', '~> 4.3'
 gem 'jquery-fileupload-rails'
+gem 'jquery-ui-rails'
+gem 'jquery-turbolinks'
 # Making translit for pretty url
 gem 'stringex'
 # Paginator
