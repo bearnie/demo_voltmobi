@@ -33,7 +33,7 @@ end
 
 То(/^к задаче должен быть прикреплен файл "(.*?)"$/) do |filename|
   @task  = Task.last
-  expect(@task.attachments.last.file_name).to eq(filename)
+  expect(@task.attachments.last.stuff_file_name).to eq(filename)
 end
 
 То(/^у задачи "(.*?)" должны быть аттрибуты:$/) do |name, table|

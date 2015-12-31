@@ -4,26 +4,28 @@ RSpec.describe "tasks/index", type: :view do
   before(:each) do
     @executor = FactoryGirl.create :user
     @author = FactoryGirl.create :user
-    assign(:tasks, [
-      Task.create!(
+    tasks = [
+      FactoryGirl.create(
+        :task,
         :name => "Name",
         :description => "Description",
         :executor => @executor,
         :author => @author
       ),
-      Task.create!(
+      FactoryGirl.create(
+        :task,
         :name => "Name",
         :description => "Description",
         :executor => @executor,
         :author => @author
       )
-    ])
+    ]
+    tasks = Kaminari.paginate_array(tasks).page(1)
+    assign(:tasks, tasks)
   end
 
   it "renders a list of tasks" do
     render
-    assert_select "tr>td", :text => "Name".to_s, :count => 2
-    #assert_select "tr>td", :text => @executor.email, :count => 2
-    #assert_select "tr>td", :text => @author.email, :count => 2
+    assert_select "div.task div.task_content", :text => "Name".to_s, :count => 2
   end
 end

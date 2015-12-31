@@ -4,6 +4,9 @@ class Task < ActiveRecord::Base
   belongs_to :executor, class_name: "User", foreign_key: "user_id"
 
   has_many :events_logs, as: :logable 
+  has_many :attachments, as: :attachable
+  accepts_nested_attributes_for :attachments
+
   validates :name, :description, presence: true
 
   paginates_per 10 

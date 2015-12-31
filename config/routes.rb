@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :attachments, only: [:create, :destroy, :show]
+
   get '/tasks/executor/:user_id', to: 'tasks#executor', as: 'tasks_executor'
   get '/tasks/executors', to: 'tasks#executors'
   resources :tasks

@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151226111316) do
+ActiveRecord::Schema.define(version: 20151231041203) do
+
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.string   "integer"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "stuff_file_name"
+    t.string   "stuff_content_type"
+    t.integer  "stuff_file_size"
+    t.datetime "stuff_updated_at"
+  end
+
+  add_index "attachments", ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
 
   create_table "events_logs", force: :cascade do |t|
     t.string   "event"

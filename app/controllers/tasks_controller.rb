@@ -53,6 +53,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = current_user.outcoming_tasks.new(task_params)
+    @task.attachments_attributes = attachments_params if attachments_params
 
     respond_to do |format|
       if @task.save
@@ -71,6 +72,7 @@ class TasksController < ApplicationController
     if task_params.present?
       authorize! :update, @task
       @task.assign_attributes(task_params)
+      @task.attachments_attributes = attachments_params if attachments_params
     end
     if event_params.present?
       authorize! :change_states, @task
@@ -112,11 +114,14 @@ class TasksController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    def attachments_params
+      #params.permit(attachments: [:tempfile, :original_filename, :content_type, :headers, :stuff])[:attachments] || {}
+      params.permit(attachments: [:tempfile, :original_filename, :content_type, :headers, :stuff])[:attachments] || {}
+    end
     def executors_params
       params.permit(:search, :sort, :page)
     end
     def event_params
-      #params.require(:task).permit(:description, :name, :user_id).permit(:event)
       params.permit(:event)
     end
     def task_params

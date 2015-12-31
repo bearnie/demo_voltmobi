@@ -1,0 +1,6 @@
+= link_to file.stuff.url do
+  = "#{file.stuff_file_name}"
+- if defined?(include_destroy_link) && include_destroy_link == true
+  %small
+    %em
+      = link_to t("Destroy"), file, method: :delete
