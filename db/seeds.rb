@@ -5,13 +5,20 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-    User.create(email: "ilp416@gmail.com", password: "adminadmin", name: "Илья", roles_mask: 1)
-    User.create(email: "kimi@gmail.com", password: "kimikimi", name: "Kimi", roles_mask: 2)
-    User.create(email: "mika@gmail.com", password: "mikamika", name: "Mika", roles_mask: 2)
-    User.create(email: "seb@gmail.com", password: "sebsebseb", name: "Sebastian", roles_mask: 2)
-    User.create(email: "den@gmail.com", password: "dendenden", name: "Deniel", roles_mask: 2)
-    User.create(email: "juan@gmail.com", password: "juanjuan", name: "Juan", roles_mask: 2)
-    User.create(email: "phidel@gmail.com", password: "phidelkastro", name: "Phidel", roles_mask: 2)
-    User.create(email: "Fernando@gmail.com", password: "Fernando", name: "Fernando", roles_mask: 2)
-    User.create(email: "jenson@gmail.com", password: "jensonbutton", name: "Jenson", roles_mask: 2)
-    User.create(email: "lewis@gmail.com", password: "lewislewis", name: "Lewis", roles_mask: 2)
+    User.create(email: "ilp416@gmail.com", password: "adminadmin", name: "Илья", roles_mask: 2)
+    users= %w(dan  den  felipe  fernando  jenson  kimi  lewis  seb)
+    users.each do |user|
+      User.create(email: "#{user}@example.com", password: "#{user}-#{user}0", name: user, roles_mask: 1, avatar: File.new("#{Rails.root}/spec/images/avatar_#{user}.png"))
+    end
+
+    tasks = ["Заказ ", "Забронировать з.ч по счету ", "Разобраться с рекламацией %", "Анализ телеметрии #", "Подготовка тестов для проекта №", "Заявки по коду"]
+    lorem_ipsum = 'Эа хаж фэугяат пльакырат, ад хаж льаорыыт аппэтырэ. Векж экз инимёкюж мыдиокрым. Нэ зыд дёко агам коррюмпит, пэр пырфэкто эррорибуз ку. Но долорюм факёльиси дёжжэнтиюнт шэа, эю квуй аюдиам ныглэгэнтур. Вяш форынчйбюж пэрчыквюэрёж ыт.'
+    users = User.all
+    20.times do 
+      task = Task.create(name: "#{tasks[rand(tasks.size)]}#{rand(3482965..7165800)}", description: lorem_ipsum, author: users[rand(users.size)], executor: users[rand(users.size)])
+      unless rand(2).zero?
+        task.perform_event("start", task.executor)
+        task.perform_event("finish", task.executor) if rand(2).zero?
+        task.save
+      end
+    end
