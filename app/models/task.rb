@@ -1,7 +1,7 @@
 class Task < ActiveRecord::Base
 
-  belongs_to :author, class_name: "User"
-  belongs_to :executor, class_name: "User", foreign_key: "user_id"
+  belongs_to :author, class_name: "User", foreign_key: :author_id, primary_key: :id
+  belongs_to :executor, class_name: "User", foreign_key: :user_id, primary_key: :id
 
   has_many :events_logs, as: :logable 
   has_many :attachments, as: :attachable
@@ -74,19 +74,19 @@ class Task < ActiveRecord::Base
   end
 
   def self.direction_filter direction, user
-    return where(1) unless direction || user
+    return where(nil) unless direction || user
     return joins(:author).where('users.id = ?', user.id) if direction == "for_me"
     return joins(:executor).where('users.id = ?', user.id) if direction == "I"
     self
   end
 
   def self.search search
-    return where(1) unless search
+    return where(nil) unless search
     joins("INNER JOIN users ON (users.id = tasks.author_id OR users.id = tasks.user_id)").where("tasks.name LIKE ? or users.email LIKE ?", "%#{search}%", "%#{search}%")
   end
 
   def self.state_filter state
-    return where(1) unless state
+    return where(nil) unless state
     where("tasks.state LIKE ?", "#{state}")
   end
 

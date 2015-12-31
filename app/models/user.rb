@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def self.executors
-    where 1
+    where nil
   end
 
   def User.all_users_tasks_counts
