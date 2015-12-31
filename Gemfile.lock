@@ -314,6 +314,7 @@ DEPENDENCIES
   less-rails
   paperclip (~> 4.3)
   rails (= 4.2.5)
+  rake
   role_model
   rspec-rails (~> 3.0)
   russian (~> 0.6.0)
