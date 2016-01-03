@@ -3,8 +3,9 @@
   -#%h1=t '.title', :default => model_class.model_name.human.titleize
   %h1= "#{t "User"} #{@user.email}"
 .row
-  .col-sm-2
-    = image_tag @user.avatar(:thumb)
+  .col-sm-2.text-center
+    .avatar
+      = image_tag @user.avatar(:thumb)
 
   .col-sm-9
     %p
@@ -30,10 +31,9 @@
         - @user.roles.each do |role|
           %li= t(role)
     %p
-      %strong= model_class.human_attribute_name(:disabled) + ':'
+      - if @user.disabled
+        %strong= model_class.human_attribute_name(:disabled) + '!'
       %br
-      = @user.disabled
-
 
 = link_to t('helpers.links.back'), users_path, :class => 'btn btn-default'
 
