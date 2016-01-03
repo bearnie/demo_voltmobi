@@ -76,7 +76,9 @@ gem 'cancancan', '~> 1.10'
 # Roles for autorizing
 gem "role_model"
 # File upload
-gem 'paperclip', '~> 4.3'
+#gem 'paperclip', '~> 4.3'
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'aws-sdk'
 gem 'jquery-fileupload-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
