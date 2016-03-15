@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151231041203) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "attachments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "attachable_id"
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 20151231041203) do
     t.datetime "stuff_updated_at"
   end
 
-  add_index "attachments", ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
+  add_index "attachments", ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id", using: :btree
 
   create_table "events_logs", force: :cascade do |t|
     t.string   "event"
@@ -37,8 +40,8 @@ ActiveRecord::Schema.define(version: 20151231041203) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "events_logs", ["logable_type", "logable_id"], name: "index_events_logs_on_logable_type_and_logable_id"
-  add_index "events_logs", ["user_id"], name: "index_events_logs_on_user_id"
+  add_index "events_logs", ["logable_type", "logable_id"], name: "index_events_logs_on_logable_type_and_logable_id", using: :btree
+  add_index "events_logs", ["user_id"], name: "index_events_logs_on_user_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.string   "name"
@@ -50,8 +53,8 @@ ActiveRecord::Schema.define(version: 20151231041203) do
     t.integer  "author_id"
   end
 
-  add_index "tasks", ["author_id"], name: "index_tasks_on_author_id"
-  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id"
+  add_index "tasks", ["author_id"], name: "index_tasks_on_author_id", using: :btree
+  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -77,7 +80,7 @@ ActiveRecord::Schema.define(version: 20151231041203) do
     t.datetime "avatar_updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

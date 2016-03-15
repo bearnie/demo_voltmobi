@@ -12,6 +12,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/executors
   # GET /tasks/executors.js
+  # Return list of executors with count of task grouped by states
   def executors
     authorize! :create, Task
     @users = User.search(executors_params[:search]).page(executors_params[:page])
@@ -33,15 +34,9 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new(task_params)
-    if request.xhr?
-      #render js: "alert '#{new_task_path(task: {executor: current_user.id})}';"
-      render js: "window.location = '#{new_task_path(task: {user_id: current_user.id})}'"
-    else
-      unless @task.executor
-        redirect_to tasks_executors_path
-      else
-        render
-      end
+    respond_to do |format|
+      format.js
+      format.html{ redirect_to(tasks_executors_path) unless @task.executor }
     end
   end
 
