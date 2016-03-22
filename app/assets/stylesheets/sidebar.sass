@@ -1,58 +1,45 @@
-/*!
- * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
-/* Toggle Styles
+/*Use px value only
+$sidebar-width: 250px
 
-#wrapper
-  padding-right: 0
-
-#sidebar-wrapper
+#sidebar
   z-index: 1000
   position: fixed
-  right: 0
-  width: 0 
   top: 0
+  width: 0 
   height: 100%
-  //margin-right: -250px
   overflow-y: auto
   overflow-x: hidden
-  -webkit-transition: all 0.5s ease
-  -moz-transition: all 0.5s ease
-  -o-transition: all 0.5s ease
-  transition: all 0.5s ease
 
-#wrapper.toggled #sidebar-wrapper
-  width: 250px
+.has_right_sidebar,
+.has_left_sidebar
+  &.toggled_sidebar
+    #sidebar
+      width: $sidebar-width
 
-#page-content-wrapper
-  -webkit-transition: all 0.5s ease
-  -moz-transition: all 0.5s ease
-  -o-transition: all 0.5s ease
-  transition: all 0.5s ease
-
-
-#wrapper.toggled #page-content-wrapper
-  //position: absolute
-  //margin-right: -250px
-
-/* Sidebar Styles
-.sidebar-nav
-  position: absolute
-  top: 0
+.has_right_sidebar #sidebar
+  right: 0
+.has_left_sidebar #sidebar
   left: 0
-  width: 250px
-  margin: 0
-  padding: 0
-  list-style: none
 
 @media (min-width: 768px)
-  #page-content-wrapper
-    padding-right: 250px
-  #sidebar-wrapper
-    width: 250px
-  #page-content-wrapper
+  .has_left_sidebar #content-wrapper
+    padding-left: $sidebar-width
+  .has_right_sidebar #content-wrapper
+    padding-right: $sidebar-width
+  #sidebar
+    width: $sidebar-width
+  #content-wrapper
     position: relative
-  #wrapper.toggled #page-content-wrapper
-    position: relative
-    margin-right: 0
+
+/* Sidebar Styles
+#content-wrapper,
+#sidebar
+  -webkit-transition: all 0.5s ease
+  -moz-transition: all 0.5s ease
+  -o-transition: all 0.5s ease
+  transition: all 0.5s ease
+
+.sidebar_content
+  min-width: $sidebar-width
+  list-style: none
+

@@ -19,45 +19,46 @@
 
 
   %body
-    #wrapper
-      #page-content-wrapper.padding-zero
+    #wrapper.has_right_sidebar
+      #content-wrapper.padding-zero
         .container-fluid
           .row
             .col-lg-12
               = bootstrap_flash
               = yield
-      #sidebar-wrapper.my_pretty_bg
-        .menu-toggler.visible-xs.visible-xxs.pull-left
-          %a.padding-large.white{href: ""}
-            %big.glyphicon.glyphicon-remove
-        .container-fluid
-          .navbar.main-menu
-            - if user_signed_in?
-              .logout
-                = link_to destroy_user_session_path, method: :delete do
-                  %big.glyphicon.glyphicon-log-out.padding-large
-              .current-user.col-xs-12.text-center
-                .avatar
-                  = image_tag current_user.avatar(:thumb)
-                = link_to current_user.email, user_registration_path
+      #sidebar.my_pretty_bg
+        .sidebar_content
+          .menu-toggler.visible-xs.visible-xxs.pull-left
+            %a.padding-large.white{href: ""}
+              %big.glyphicon.glyphicon-remove
+          .container-fluid
+            .navbar.main-menu
+              - if user_signed_in?
+                .logout
+                  = link_to destroy_user_session_path, method: :delete do
+                    %big.glyphicon.glyphicon-log-out.padding-large
+                .current-user.col-xs-12.text-center
+                  .avatar
+                    = image_tag current_user.avatar(:thumb)
+                  = link_to current_user.email, user_registration_path
 
-              .clear
-              %ul.nav.nav-list.task-menu.v2
-                %li.nav-header
-                  = link_to t("I"), tasks_path(direction: "I")
-                %li= link_to t("I do"), tasks_path(direction: "I", state: "started"), class: 'started'
-                %li= link_to t("I will do"), tasks_path(direction: "I", state: "new"), class: 'new'
-                %li= link_to t("I did"), tasks_path(direction: "I", state: "finished"), class: 'finished'
-              %ul.nav.nav-list.task-menu.task-menu-for-me.v2
-                %li.nav-header
-                  = link_to t("For me"), tasks_path(direction: "for_me")
-                %li= link_to t("Do for me"), tasks_path(direction: "for_me", state: "started"), class: 'started'
-                %li= link_to t("Will do for me"), tasks_path(direction: "for_me", state: "new"), class: 'new'
-                %li= link_to t("Did for me"), tasks_path(direction: "for_me", state: "finished"), class: 'finished'
+                .clear
+                %ul.nav.nav-list.task-menu.v2
+                  %li.nav-header
+                    = link_to t("I"), tasks_path(direction: "I")
+                  %li= link_to t("I do"), tasks_path(direction: "I", state: "started"), class: 'started'
+                  %li= link_to t("I will do"), tasks_path(direction: "I", state: "new"), class: 'new'
+                  %li= link_to t("I did"), tasks_path(direction: "I", state: "finished"), class: 'finished'
+                %ul.nav.nav-list.task-menu.task-menu-for-me.v2
+                  %li.nav-header
+                    = link_to t("For me"), tasks_path(direction: "for_me")
+                  %li= link_to t("Do for me"), tasks_path(direction: "for_me", state: "started"), class: 'started'
+                  %li= link_to t("Will do for me"), tasks_path(direction: "for_me", state: "new"), class: 'new'
+                  %li= link_to t("Did for me"), tasks_path(direction: "for_me", state: "finished"), class: 'finished'
 
-            - else
-              .white
-                = render "devise/sessions/new", resource: User.new, resource_name: :user
+              - else
+                .white
+                  = render "devise/sessions/new", resource: User.new, resource_name: :user
 
       %footer
         %p &copy; Company 2015

@@ -11,5 +11,5 @@ $ ->
     $(target).empty()
     false
   $('body').on 'click', '.menu-toggler', ->
-    $('#wrapper').toggleClass('toggled')
+    $('#wrapper').toggleClass('toggled_sidebar')
     false
